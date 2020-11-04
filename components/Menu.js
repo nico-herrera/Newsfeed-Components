@@ -35,10 +35,9 @@ let menuItems = [
 const menuMaker = (arr) => {
   const mainDiv = document.createElement("div");
   const ul = document.createElement("ul");
-
+  arr.unshift("Test Test");
   for (let i = 0; i < arr.length; i++) {
     const arrData = arr[i];
-    console.log(arrData);
 
     mainDiv.classList.add("menu");
 
@@ -48,12 +47,21 @@ const menuMaker = (arr) => {
     mainDiv.appendChild(ul);
     ul.appendChild(li);
   }
+
+  const menuButton = document.querySelector(".menu-button");
+  menuButton.addEventListener("click", (event) => {
+    console.log("clicked");
+    if (mainDiv.classList.contains("menu--open")) {
+      mainDiv.classList.remove("menu--open");
+    } else {
+      console.log("else");
+      mainDiv.classList.add("menu--open");
+    }
+  });
+
   console.log(mainDiv);
   return mainDiv;
 };
-menuMaker(menuItems);
 
-const window2 = document.querySelector("body");
-window.addEventListener("dblclick", (event) => {
-  alert("hi skyllar!");
-});
+document.querySelector("body").appendChild(menuMaker(menuItems));
+menuMaker(menuItems);
